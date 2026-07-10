@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:ns1="http://xmlns.com/foaf/0.1/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <ns1:Person rdf:nodeID="x">
+    <ns1:name>Edsger W. Dijkstra</ns1:name>
+  </ns1:Person>
+  <ns1:Person rdf:nodeID="y">
+    <ns1:name>Frederic Brenton Fitch</ns1:name>
+  </ns1:Person>
+</rdf:RDF>

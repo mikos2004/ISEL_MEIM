@@ -1,0 +1,74 @@
+True vs versão Linear
+
+
+==================================================
+RESULTADOS DO CLIP NO CONJUNTO DE TESTE (20% do dataset)
+==================================================
+
+📊 Total de amostras: 112
+
+--- CLIP pré-treinado ---
+  BLEU-4: 7.49
+  ROUGE-1: 42.00
+  ROUGE-L: 28.90
+
+
+Índice: 0 | ROUGE-1: 60.71%
+	Filme: 21 Jump Street
+	True:  The image depicts a scene in an office setting, where two individuals are engaged in a conversation. One person, dressed in a formal suit, is seated across from another individual wearing a casual, purple and white letterman jacket. The office is furnished with a wooden desk, a couch, and various office supplies, including scissors, pens, and a mug. The background features a poster of a beach scene, adding a touch of relaxation to the otherwise professional environment.
+	CLIP:  The image depicts a scene from an office environment where two individuals are engaged in a conversation. The protagonist, dressed in a blue blazer and a white shirt, is seated at a desk, while the other, wearing a green tie, is standing at the edge of the room. The setting features a desk with files and papers, a chair, and a window with a view of a park, suggesting a office environment. The office is furnished with other office supplies and equipment, adding to the overall atmosphere of work and professionalism.
+
+Índice: 108 | ROUGE-1: 60.56%
+	Filme: The Fall Guy
+	True:  The image depicts a man sitting in the driver's seat of a car, holding a futuristic-looking weapon. He is wearing a cowboy hat, sunglasses, and a metallic jacket, suggesting a character from a science fiction or action movie. The interior of the car appears to be in a state of disrepair, with visible rust and wear. The background shows a blue wall and a pink structure, indicating an urban or industrial setting.
+	CLIP:  The image depicts a scene from a movie or TV show, where a man and a woman are sitting in a car. The man wears a hat and a jacket, indicating he is the driver, while the woman wears a sunglasses and a polo shirt, suggesting she is the main character. The background features a rural landscape with a windmill or haystacks, suggesting a rural or outdoor setting.
+
+Índice: 30 | ROUGE-1: 55.09%
+	Filme: Frozen
+	True:  The image depicts two animated characters, one with blonde hair wearing a blue dress and the other with brown hair in a green dress, kneeling in the snow. They are both interacting with a snowman, with the character in the green dress leaning on it and the character in the blue dress looking at it with a thoughtful expression. The scene is set in a snowy environment with a dark, mysterious background, suggesting a cold, wintry atmosphere.
+	CLIP:  The image depicts two girls in a dark room, one with blonde hair and a pink dress, and the other with dark hair and a blue dress. The girls are sitting cross-legged on a rock, with a light shining from the ceiling, suggesting they are in a dark, mysterious atmosphere. The background features a blue sky and a tree with leaves, suggesting they may be in a forest or a nearby town. The scene is set against a blue sky and a blue background, adding to the otherworldly atmosphere.
+
+Índice: 39 | ROUGE-1: 54.84%
+	Filme: Frozen
+	True:  The image depicts two characters dressed in winter attire, standing in a snowy, icy landscape. One character is holding a stack of folded blankets, while the other is holding a similar stack. The background features a cold, wintry scene with snow-covered buildings and a distant view of a harbor or port, suggesting a cold, possibly festive or holiday setting.
+	CLIP:  The image depicts a snowy landscape with a character in a blue coat standing atop a hill, their face obscured by a white cap. In the background, a dark, snow-covered building can be seen, suggesting a cozy or peaceful setting. The overall atmosphere is one of coldness and serenity, with the character's attire and the snowy landscape adding to the wintry feel.
+
+True vs versão MLP
+
+==================================================
+RESULTADOS DO CLIP NO CONJUNTO DE TESTE (20% do dataset)
+==================================================
+
+📊 Total de amostras: 112
+
+--- CLIP pré-treinado ---
+  BLEU-4: 8.53
+  ROUGE-1: 42.05
+  ROUGE-L: 28.64
+
+============================================================
+TOP 4 MELHORES PREDIÇÕES DO CLIP (maior ROUGE-1)
+============================================================
+
+Índice: 75 | ROUGE-1: 61.43%
+	Filme: IF
+	True:  The image depicts a man with a surprised or shocked expression, looking off to the side. He has short hair and a beard, and is wearing a dark jacket over a white shirt. The background is dimly lit, with some blurred objects that appear to be stuffed animals or toys, suggesting a setting that could be a child's room or a similar environment. The overall mood of the image conveys a sense of surprise or alarm.
+	CLIP:  The image depicts a man in a jacket with a blue or white shirt, sitting in a background that appears to be a bar or club setting. The man's face is covered with a beard, and he appears to be facing forward with a expression of concern or surprise. The overall atmosphere is quiet and serious, suggesting a serious conversation or intervention.
+
+Índice: 80 | ROUGE-1: 58.39%
+	Filme: IF
+	True:  The image depicts a man standing outdoors, dressed in a dark blazer over a white shirt, with a distinctive red and black brooch on his lapel. He appears to be engaged in a conversation or interaction with a large, plush animal figure, possibly a bear, which is partially visible on the right side of the frame. The background features a building with a window and a tree with bare branches, suggesting a winter or autumn setting.
+	CLIP:  The image depicts a man in a white shirt and pants, standing against a white background with a door in the foreground. He is wearing a t-shirt with a cartoon character printed on it, possibly a unicorn or dragon, and appears to be in a conversation with a person in a dark jacket. The background suggests a cozy, relaxed setting.
+
+Índice: 87 | ROUGE-1: 55.29%
+	Filme: The Fall Guy
+	True:  The image depicts two individuals engaged in a serious conversation, each holding a phone to their ear. The person on the left is dressed in a floral-patterned shirt and appears to be in a well-lit room with shelves filled with various items, including a bust on a shelf. The person on the right is wearing a light-colored suit and is in a dimly lit room with a window that reveals a cityscape at night. The overall atmosphere suggests a moment of intense communication or decision-making.
+	CLIP:  --- The image depicts a woman in a long black dress engaged in a serious conversation on a bus stop wall. The background features a table with various items, including a laptop and a torch, suggesting a medical or security context. The woman's face is caught in a moment of affection or emotion, with one hand raised and a look of surprise on her face. The setting appears to be a realistic, well-lit environment with various lights on the wall.
+
+Índice: 18 | ROUGE-1: 55.21%
+	Filme: 21 Jump Street
+	True:  The image depicts a police officer named Hardy, seated at his desk in an office setting. He is wearing a white uniform with a badge and patches, and is holding a pen in his hand. The desk is cluttered with various items, including a mug, papers, and a telephone. In the background, there is a flag, a fan, and framed pictures on the wall. The overall atmosphere suggests a professional and somewhat busy environment.
+	CLIP:  The image depicts a man in a police uniform. He is wearing a red police badge and a badge rack. The backdrop features a framed picture of a woman and a group of men in military uniforms. The room is dim with a lighted desk in the center, which is covered with papers and books. The man is standing above the desk, his back to the audience, with a cane in his hand. The desk is covered with papers, books, and other items, suggesting a formal or official setting.
+
+
+

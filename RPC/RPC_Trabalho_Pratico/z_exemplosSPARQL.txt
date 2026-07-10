@@ -1,0 +1,227 @@
+#_________________________________________________________________________
+# Paulo Trigo Silva (PTS)
+# SPARQL (exemplos de apoio ao trabalho pr?tico)
+# Notar que algumas interroga??es podem demorar tempo a obter resposta
+# (teste as interroga??es incrementalmente
+# para perceber qual, ou quais, as cl?usulas que mais tempo consomem)
+#_________________________________________________________________________
+
+
+
+#_________________________________________________________________________
+#_________________________________________________________________________
+# interroga??es sobre a DBLP, executadas em:
+# http://dblp.rkbexplorer.com/sparql
+#_________________________________________________________________________
+#_________________________________________________________________________
+
+
+
+#_________________________________________________________________________
+# obter as sub-classes de akt:Publication-Reference
+# The distinction between publication and publication-reference
+# makes it possible to distinguish between multiple occurrences
+# of the same publication, for instance in different media
+# c.f., http://www.aktors.org/ontology/portal#article-of-journal
+# os indiv?duos pertencem ?s sub-classes de akt:Publication-Reference
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX akt:  <http://www.aktors.org/ontology/portal#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX akt:  <http://www.aktors.org/ontology/portal#>
+PREFIX akts: <http://www.aktors.org/ontology/support#>
+ 
+SELECT DISTINCT ?sub_type
+WHERE 
+   { 
+   ?sub_type rdfs:subClassOf akt:Publication-Reference .
+   }
+LIMIT 50
+
+
+
+# RESPOSTA:
+# akt:Publication-Reference
+# akt:Article-Reference
+# akt:Book-Reference
+# akt:Conference-Proceedings-Reference
+# akt:Thesis-Reference
+# akt:Book-Section-Reference
+### as pr?ximas classes n?o t?m indiv?duos (em DBLP)
+# akt:Web-Reference
+# akt:Workshop-Proceedings-Reference
+# akt:Proceedings-Paper-Reference
+# akt:Technical-Report-Reference
+# akt:Edited-Book-Reference
+
+# Para verificar se determinada classe (e.g., akt:Web-Reference) tem alguma inst?ncia pode executar:
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX akt:  <http://www.aktors.org/ontology/portal#>
+ 
+SELECT DISTINCT ?instance
+WHERE 
+   { 
+   ?instance rdf:type akt:Web-Reference .
+   }
+LIMIT 50
+#_________________________________________________________________________
+
+
+
+=====//||\\=====
+
+
+
+#_________________________________________________________________________
+# BOOK
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX akt:  <http://www.aktors.org/ontology/portal#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX akt:  <http://www.aktors.org/ontology/portal#>
+PREFIX akts: <http://www.aktors.org/ontology/support#>
+  
+SELECT DISTINCT ?pub ?pub_title ?author ?author_full_name ?pub_date ?pub_volume ?pub_web_address ?same_as
+WHERE 
+   {
+   ?pub rdf:type akt:Book-Reference .
+
+   ?pub akt:has-title ?pub_title .
+   ?pub akt:has-author ?author .
+   ?author rdf:type akt:Person .
+   ?author akt:full-name ?author_full_name .
+
+   OPTIONAL { ?author akt:has-affiliation ?author_affiliation . 
+              ?author_affiliation akts:has-pretty-name ?author_affiliation_name . } .
+
+   ?pub akt:has-date ?pub_date .
+   ?pub akt:has-volume ?pub_volume .
+   ?pub akt:has-web-address ?pub_web_address .
+   OPTIONAL { ?pub owl:sameAs ?same_as } .
+   }
+LIMIT 20
+#_________________________________________________________________________
+
+
+
+
+=====//||\\=====
+
+
+
+#_________________________________________________________________________
+# ARTICLE-IN-JOURNAL
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX akt:  <http://www.aktors.org/ontology/portal#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX akt:  <http://www.aktors.org/ontology/portal#>
+PREFIX akts: <http://www.aktors.org/ontology/support#>
+  
+SELECT DISTINCT ?pub ?pub_title ?author ?author_full_name ?author_affiliation_name ?pub_date ?pub_volume ?pub_web_address ?pub_type ?pub_type_title ?same_as
+WHERE 
+   {
+   ?pub rdf:type akt:Article-Reference .
+   ?pub akt:article-of-journal ?pub_type .
+   ?pub_type akt:has-title ?pub_type_title .
+
+   ?pub akt:has-title ?pub_title .
+   ?pub akt:has-date ?pub_date .
+   ?pub akt:has-volume ?pub_volume .
+   ?pub akt:has-web-address ?pub_web_address .
+   ?pub akt:has-author ?author .
+   ?author rdf:type akt:Person .
+   ?author akt:full-name ?author_full_name .
+
+   OPTIONAL { ?author akt:has-affiliation ?author_affiliation . 
+              ?author_affiliation akts:has-pretty-name ?author_affiliation_name . } .
+   }
+LIMIT 20
+
+## RETIREI (DA INTERROGA??O ACIMA) PARA EVITAR ORIGINAR TUPLOS DUPLICADOS:
+   OPTIONAL { ?pub owl:sameAs ?same_as } .
+#_________________________________________________________________________
+
+
+
+=====//||\\=====
+
+
+
+#_________________________________________________________________________
+# ARTICLE-IN-PROCEEDINGS
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX akt:  <http://www.aktors.org/ontology/portal#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX akt:  <http://www.aktors.org/ontology/portal#>
+PREFIX akts: <http://www.aktors.org/ontology/support#>
+  
+SELECT DISTINCT ?pub ?pub_title ?author ?author_full_name ?pub_date ?pub_type ?pub_type_title ?pub_journal_type_title ?pub_journal_type ?pub_web_address ?same_as
+WHERE 
+   {
+   ?pub_type rdf:type akt:Conference-Proceedings-Reference .
+   ?pub_type akt:has-title ?pub_type_title .
+   ?pub akt:cites-publication-reference ?pub_type
+
+   ?pub akt:has-title ?pub_title .
+   ?pub akt:has-date ?pub_date .
+   ?pub akt:has-web-address ?pub_web_address .
+   ?pub akt:has-author ?author .
+   ?author rdf:type akt:Person .
+   ?author akt:full-name ?author_full_name .
+
+   OPTIONAL { ?author akt:has-affiliation ?author_affiliation . 
+              ?author_affiliation akts:has-pretty-name ?author_affiliation_name . } .
+
+   OPTIONAL { ?pub akt:article-of-journal ?pub_journal_type .
+              ?pub_journal_type akt:has-title ?pub_journal_type_title } .
+
+   OPTIONAL { ?pub owl:sameAs ?same_as } .
+   }
+LIMIT 20
+#_________________________________________________________________________
+
+
+
+=====//||\\=====
+
+
+
+#_________________________________________________________________________
+# AUTHOR-AFFILIATION-PUBLICATION (dada uma determinada parte de um nome)
+PREFIX id:   <http://dblp.rkbexplorer.com/id/>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX akt:  <http://www.aktors.org/ontology/portal#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX akt:  <http://www.aktors.org/ontology/portal#>
+PREFIX akts: <http://www.aktors.org/ontology/support#>
+
+SELECT DISTINCT ?author ?author_name ?author_affiliation ?author_affiliation_name ?pub ?pub_title
+WHERE
+   {
+   ?author rdf:type akt:Person .
+   ?author akt:full-name ?author_name .
+   FILTER( regex( str( ?author_name ), "Dijkstra" ) )
+
+   ?pub akt:has-author ?author .
+   ?pub akt:has-title ?pub_title .
+
+   OPTIONAL{ ?author akt:has-affiliation ?author_affiliation .
+             ?author_affiliation akts:has-pretty-name ?author_affiliation_name } .
+   }
+LIMIT 2
+#_________________________________________________________________________
+
+## OUTRO NOME DE AUTOR:
+   FILTER( regex( str( ?author_name ), "Griffeth" ) )
+
+
+=====//||\\=====
+
+
+
+
+
+

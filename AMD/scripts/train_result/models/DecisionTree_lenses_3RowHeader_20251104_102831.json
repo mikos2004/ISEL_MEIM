@@ -1,0 +1,10 @@
+{
+  "dataset": "lenses_3RowHeader",
+  "model_type": "DecisionTree",
+  "timestamp": "20251104_102831",
+  "class_values": [
+    "hard",
+    "none",
+    "soft"
+  ]
+}

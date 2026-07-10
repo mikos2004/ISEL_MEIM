@@ -1,0 +1,19 @@
+lenses,age,prescription,astigmatic,tear_rate
+hard none soft,pre-presbyopic presbyopic young,hypermetropia myopia,no yes,normal reduced
+class,,,,
+soft,pre-presbyopic,hypermetropia,no,normal
+soft,pre-presbyopic,hypermetropia,no,normal
+none,pre-presbyopic,hypermetropia,no,normal
+soft,pre-presbyopic,hypermetropia,no,normal
+none,pre-presbyopic,hypermetropia,yes,normal
+none,pre-presbyopic,hypermetropia,yes,normal
+soft,pre-presbyopic,myopia,no,normal
+soft,pre-presbyopic,myopia,no,normal
+hard,pre-presbyopic,myopia,yes,normal
+hard,pre-presbyopic,myopia,yes,normal
+hard,pre-presbyopic,myopia,yes,normal
+none,presbyopic,hypermetropia,yes,reduced
+none,presbyopic,hypermetropia,yes,reduced
+none,presbyopic,myopia,yes,reduced
+none,presbyopic,myopia,yes,reduced
+none,young,hypermetropia,no,reduced

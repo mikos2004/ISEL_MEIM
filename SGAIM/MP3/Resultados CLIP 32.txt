@@ -1,0 +1,77 @@
+True vs versão Linear
+
+
+==================================================
+RESULTADOS DO CLIP NO CONJUNTO DE TESTE (20% do dataset)
+==================================================
+
+📊 Total de amostras: 112
+
+--- CLIP pré-treinado ---
+  BLEU-4: 6.69
+  ROUGE-1: 40.78
+  ROUGE-L: 27.72
+
+============================================================
+TOP 4 MELHORES PREDIÇÕES DO CLIP (maior ROUGE-1)
+============================================================
+
+Índice: 94 | ROUGE-1: 53.33%
+	Filme: The Fall Guy
+	True:  The image depicts a scene with a walkie-talkie prominently displayed in the foreground, labeled with a "1X" sticker. The background is softly blurred, featuring a person standing near a window, with the light from the window casting a warm glow and creating a lens flare effect. The setting appears to be indoors, possibly in a kitchen or a similar environment, with various items and appliances visible in the background. The overall atmosphere suggests a moment of tension or urgency, possibly from a dramatic or action-packed context.
+	CLIP:  The image depicts a frame from a video game, with the protagonist standing in the background, wearing a red jacket. The lighting is dimly lit, casting a warm, intimate atmosphere, while the room is filled with the sound of gameplay. The frame appears to be in a dimly lit room, with a wallpaper background and a window visible in the background. The overall atmosphere is one of engagement and focus, with a hint of anticipation or frustration.
+
+Índice: 24 | ROUGE-1: 52.74%
+	Filme: 21 Jump Street
+	True:  The image depicts a group of young adults standing in a dimly lit room, possibly a church or a community center. The setting is characterized by a mix of modern and traditional elements, with a crucifix hanging on the wall and a cross on the floor. The individuals appear to be engaged in a conversation, with one person in a suit gesturing towards the others. The room is furnished with various items, including a desk, chairs, and a fan, suggesting a casual or informal gathering. The overall atmosphere is one of discussion or planning, with the group members attentively listening to the person in the suit.
+	CLIP:  The image depicts a scene from a modern drama set, featuring a group of characters with different backgrounds and perspectives. The protagonist, a young man in a blue shirt and pants, is pointing at a piece of equipment on the floor. He is accompanied by a woman with a purple t-shirt and a group of men, all dressed in different colors and with different levels of attention. The setting appears to be a gathering or a break in the action, with the emphasis on the individual differences and the dynamic nature of the group.
+
+Índice: 43 | ROUGE-1: 52.71%
+	Filme: Frozen
+	True:  The image depicts a young girl with red hair, wearing a green cloak with a blue ribbon, lying on the ground in a snowy forest. She appears to be in a state of surprise or fear, with wide eyes and an open mouth, as she reaches out with one hand. The background features a dark, wintry landscape with snow-covered trees and a moonlit sky, creating a sense of wonder and adventure.
+	CLIP:  The image depicts a character with blue hair and a grimace, standing on a snowy landscape with snowflakes falling around them. The character appears to be in a moment of surprise or disbelief, suggesting a heartwarming moment from a animated film. The background features a blue sky and snow-covered trees, further emphasizing the winter-themed setting.
+
+Índice: 75 | ROUGE-1: 51.06%
+	Filme: IF
+	True:  The image depicts a man with a surprised or shocked expression, looking off to the side. He has short hair and a beard, and is wearing a dark jacket over a white shirt. The background is dimly lit, with some blurred objects that appear to be stuffed animals or toys, suggesting a setting that could be a child's room or a similar environment. The overall mood of the image conveys a sense of surprise or alarm.
+	CLIP:  The image depicts a man with a confident and engaged expression, seemingly in a moment of realization or understanding. He is wearing a blouse and ties his wrists to the armrest of a chair, indicating a sense of being in control or overwhelmed. The background is dark and the scene is set against a blue background, adding to the overall intensity of the image.
+
+True vs versão MLP
+
+==================================================
+RESULTADOS DO CLIP NO CONJUNTO DE TESTE (20% do dataset)
+==================================================
+
+📊 Total de amostras: 112
+
+--- CLIP pré-treinado ---
+  BLEU-4: 7.62
+  ROUGE-1: 38.93
+  ROUGE-L: 26.94
+
+
+============================================================
+TOP 4 MELHORES PREDIÇÕES DO CLIP (maior ROUGE-1)
+============================================================
+
+Índice: 70 | ROUGE-1: 58.57%
+	Filme: IF
+	True:  The image depicts a lively scene inside a grand, ornate hallway. Various anthropomorphic characters, including a pink dinosaur, a green creature, and a banana with a crown, are gathered in the corridor. The hallway is adorned with rich, red walls, intricate moldings, and a checkered floor, creating an opulent atmosphere. The characters appear to be engaged in a playful or celebratory gathering, adding a whimsical touch to the elegant setting.
+	CLIP:  The image depicts a lively scene in a grand ballroom, where a diverse array of animated characters are gathered. The room is adorned with ornate decorations, and a grand piano stands in the foreground, giving way to a lavish and theatrical atmosphere. The characters appear to be from different eras, with a pink dragon and a purple creature with a tiaras, giving a playful and imaginative feel to the setting.
+
+Índice: 53 | ROUGE-1: 58.44%
+	Filme: Frozen
+	True:  The image depicts a serene winter scene at night, featuring a cozy log cabin nestled in a snow-covered forest. The cabin's warm yellow light contrasts beautifully with the cool blue tones of the surrounding snow and trees, creating a tranquil and inviting atmosphere. A chimney emits a gentle plume of smoke, suggesting a fire burning inside, adding to the sense of warmth and comfort. The scene is peaceful and idyllic, evoking a sense of quiet solitude and the quiet beauty of a snowy night.
+	CLIP:  The image depicts a serene winter scene in a mountainous setting, with a cozy cabin at the bottom of a snow-covered hill. The cabin is adorned with lush green trees and a warm blue sky, creating a sense of warmth and comfort amidst the snowy landscape. The lighting is mild and natural, casting a soft, ethereal glow on the scene, making it appear both peaceful and inviting.
+
+Índice: 73 | ROUGE-1: 50.89%
+	Filme: IF
+	True:  The image depicts a cozy living room scene where a person is sitting in a comfortable armchair, facing a television screen. The room has a warm, vintage ambiance, with a red couch and a bookshelf filled with books in the background. The television is displaying a scene with a forested background, suggesting a nature or adventure theme. The overall atmosphere conveys a sense of relaxation and leisure, as if the person is enjoying a quiet evening watching a movie or a show.
+	CLIP:  The image depicts a scene from inside a cinema, where a person is standing in the middle of a dimly lit room. The camera focuses on a scene at the end of the film, with someone sitting on a couch, seemingly in a dream-like state. The building's exterior, painted a vibrant shade of blue, adds a warm, otherworldly quality to the scene. The overall atmosphere is one of relaxation and introspection, as if the person were in a dream or a scene from a movie.
+
+Índice: 103 | ROUGE-1: 50.82%
+	Filme: The Fall Guy
+	True:  The image depicts a rugged, outdoor scene where a man in a dirty, camouflage jacket and sunglasses is giving a thumbs-up gesture. He appears to be in a construction or excavation area, surrounded by equipment and other workers. The setting includes a rocky outcrop and a crane in the background, suggesting a challenging and physically demanding environment.
+	CLIP:  The image depicts a scene from an unnamed movie, where a man in a blue jacket and black hat is standing in a group of workers. He is the only person in the frame, and he appears to be in charge or leading the group. The scene is arranged with a few other workers in blue jackets and black hats, suggesting a workplace setting.
+
+

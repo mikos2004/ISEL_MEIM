@@ -1,0 +1,152 @@
+--#############
+--# Tiago Alcobia (50521)
+--# Miguel Alcobia (50746)
+--# Fábio Pestana (50756)
+--#############
+
+--==============
+-- DB connection
+--==============
+\set dataBase db_prj
+;
+\set userName postgres
+;
+\connect :dataBase :userName
+;
+--==========================
+--==========================
+
+-------------------------------
+-- create the relational schema
+-------------------------------
+DROP VIEW IF EXISTS v_prescription;
+DROP VIEW IF EXISTS v_exam;
+DROP TABLE IF EXISTS patient_doctor_disease;
+DROP TABLE IF EXISTS patient_doctor_exam;
+DROP TABLE IF EXISTS recommended_lens;
+DROP TABLE IF EXISTS tear_rate;
+DROP TABLE IF EXISTS DISEASE;
+DROP TABLE IF EXISTS DOCTOR;
+DROP TABLE IF EXISTS PATIENT;
+--------------------------------
+
+CREATE TABLE PATIENT
+(
+    patientID SERIAL PRIMARY KEY,
+    fullName VARCHAR(100) NOT NULL,
+    birthDate DATE NOT NULL
+);
+
+CREATE TABLE DOCTOR
+(
+    doctorID SERIAL PRIMARY KEY,
+    fullName VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE DISEASE
+(
+    diseaseID SERIAL PRIMARY KEY,
+    diseaseName VARCHAR(50) NOT NULL UNIQUE,
+    description TEXT
+);
+
+-- Tabela para tear_rate como entidade
+CREATE TABLE tear_rate
+(
+    tearRateID SERIAL PRIMARY KEY,
+    tearRateType VARCHAR(10) NOT NULL UNIQUE CHECK (tearRateType IN ('normal', 'reduced'))
+);
+
+-- Tabela para recommendedLens como entidade
+CREATE TABLE recommended_lens
+(
+    lensID SERIAL PRIMARY KEY,
+    lensType VARCHAR(10) NOT NULL UNIQUE CHECK (lensType IN ('hard', 'soft', 'none'))
+);
+
+-- Tabela de junção para representar exames (relação entre Patient e Doctor)
+CREATE TABLE patient_doctor_exam
+(
+    patient_doctor_exam_id SERIAL PRIMARY KEY,
+    patientID INT NOT NULL,
+    doctorID INT NOT NULL,
+    examDate DATE NOT NULL,
+    examType VARCHAR(50) NOT NULL,
+    tearRateID INT NOT NULL,
+    FOREIGN KEY (patientID) REFERENCES PATIENT(patientID),
+    FOREIGN KEY (doctorID) REFERENCES DOCTOR(doctorID),
+    FOREIGN KEY (tearRateID) REFERENCES tear_rate(tearRateID)
+);
+
+-- Tabela de junção para representar prescrições (relação entre Patient, Doctor, Disease e Lens)
+CREATE TABLE patient_doctor_disease
+(
+    patient_doctor_disease_id SERIAL PRIMARY KEY,
+    patientID INT NOT NULL,
+    doctorID INT NOT NULL,
+    diseaseID INT NOT NULL,
+    patient_doctor_exam_id INT NOT NULL,
+    lensID INT NOT NULL,
+    FOREIGN KEY (patientID) REFERENCES PATIENT(patientID),
+    FOREIGN KEY (doctorID) REFERENCES DOCTOR(doctorID),
+    FOREIGN KEY (diseaseID) REFERENCES DISEASE(diseaseID),
+    FOREIGN KEY (patient_doctor_exam_id) REFERENCES patient_doctor_exam(patient_doctor_exam_id),
+    FOREIGN KEY (lensID) REFERENCES recommended_lens(lensID)
+);
+
+CREATE TABLE prescription_diseases
+(
+    prescription_disease_id SERIAL PRIMARY KEY,
+    patient_doctor_disease_id INT NOT NULL,
+    diseaseID INT NOT NULL,
+    FOREIGN KEY (patient_doctor_disease_id) REFERENCES patient_doctor_disease(patient_doctor_disease_id),
+    FOREIGN KEY (diseaseID) REFERENCES DISEASE(diseaseID)
+);
+
+----------------------------------------
+-- Create views to replace PRESCRIPTION and EXAM
+----------------------------------------
+
+-- View for EXAM
+CREATE OR REPLACE VIEW v_exam AS
+SELECT 
+    pde.patient_doctor_exam_id AS examID,
+    p.patientID,
+    p.fullName AS patientName,
+    d.doctorID,
+    d.fullName AS doctorName,
+    pde.examDate,
+    pde.examType,
+    tr.tearRateType AS tearRate
+FROM patient_doctor_exam pde
+JOIN PATIENT p ON pde.patientID = p.patientID
+JOIN DOCTOR d ON pde.doctorID = d.doctorID
+JOIN tear_rate tr ON pde.tearRateID = tr.tearRateID;
+
+-- View for PRESCRIPTION with dynamic ageGroup calculation
+CREATE OR REPLACE VIEW v_prescription AS
+SELECT 
+    pdd.patient_doctor_disease_id AS prescriptionID,
+    p.patientID,
+    p.fullName AS patientName,
+    p.birthDate,
+    CASE 
+        WHEN EXTRACT(YEAR FROM AGE(p.birthDate)) < 25 THEN 'young'
+        WHEN EXTRACT(YEAR FROM AGE(p.birthDate)) BETWEEN 25 AND 45 THEN 'pre-presbyopic'
+        ELSE 'presbyopic'
+    END AS ageGroup,
+    d.doctorID,
+    d.fullName AS doctorName,
+    ds.diseaseID,
+    ds.diseaseName,
+    pde.examType,
+    pde.examDate AS prescriptionDate,  -- prescription date é a data do exame
+    tr.tearRateType AS tearRate,
+    rl.lensType AS recommendedLens
+FROM patient_doctor_disease pdd
+JOIN PATIENT p ON pdd.patientID = p.patientID
+JOIN DOCTOR d ON pdd.doctorID = d.doctorID
+JOIN DISEASE ds ON pdd.diseaseID = ds.diseaseID
+JOIN patient_doctor_exam pde ON pdd.patient_doctor_exam_id = pde.patient_doctor_exam_id
+JOIN tear_rate tr ON pde.tearRateID = tr.tearRateID
+JOIN recommended_lens rl ON pdd.lensID = rl.lensID;

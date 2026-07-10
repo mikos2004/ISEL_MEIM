@@ -1,0 +1,573 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#"
+     xml:base="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasContactWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasContactWith"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasManifestationOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasManifestationOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasResidenceIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasResidenceIn"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasSymptomsStartingSince -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasSymptomsStartingSince"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasTestOutcomeOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasTestOutcomeOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasTraveledFrom -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasTraveledFrom"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#isExplainedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#isExplainedBy"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AcuteRespiratoryInfection -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AcuteRespiratoryInfection"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AreaWithActiveCommunityTransmission -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AreaWithActiveCommunityTransmission"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#Case -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#Case"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#Confirmed -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#Confirmed">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasTestOutcomeOf"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#SARS-CoV-2-positive"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#Case"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#OtherExplanatoryEtiology -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#OtherExplanatoryEtiology"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#Probable -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#Probable">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasTestOutcomeOf"/>
+                                <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#SARS-CoV-2-not-conclusive"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasTestOutcomeOf"/>
+                                <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#pan-coronavirus-positive"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#isExplainedBy"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_none_"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#Case"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#Suspicious -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#Suspicious">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AcuteRespiratoryInfection"/>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasResidenceIn"/>
+                                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AreaWithActiveCommunityTransmission"/>
+                                    </owl:Restriction>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasTraveledFrom"/>
+                                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AreaWithActiveCommunityTransmission"/>
+                                    </owl:Restriction>
+                                </owl:unionOf>
+                            </owl:Class>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasSymptomsStartingSince"/>
+                                <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_014-days-ago"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#isExplainedBy"/>
+                                <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_none_"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AcuteRespiratoryInfection"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasContactWith"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#Confirmed"/>
+                                            <rdf:Description rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#Probable"/>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasSymptomsStartingSince"/>
+                                <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_014-days-ago"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasManifestationOf"/>
+                                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AcuteRespiratoryInfection"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#isExplainedBy"/>
+                                <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_none_"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#Case"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#TestOutcome -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#TestOutcome"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#TimeLag -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#TimeLag"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#SARS-CoV-2-not-conclusive -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#SARS-CoV-2-not-conclusive">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#TestOutcome"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#SARS-CoV-2-positive -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#SARS-CoV-2-positive">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#TestOutcome"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_007-days-ago -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_007-days-ago">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#TimeLag"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_014-days-ago -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_014-days-ago">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#TimeLag"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_none_ -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_none_">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#OtherExplanatoryEtiology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#breathingDifficulty -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#breathingDifficulty">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AcuteRespiratoryInfection"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#cough -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#cough">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AcuteRespiratoryInfection"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#italy -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#italy">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AreaWithActiveCommunityTransmission"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#negative -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#negative">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#TestOutcome"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#pan-coronavirus-positive -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#pan-coronavirus-positive">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#TestOutcome"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_c1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_c1">
+        <hasTestOutcomeOf rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#SARS-CoV-2-positive"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_notClassified -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_notClassified">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasManifestationOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AcuteRespiratoryInfection"/>
+            </owl:Restriction>
+        </rdf:type>
+        <hasManifestationOf rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#suddenOnsetFever"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_p1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_p1">
+        <hasTestOutcomeOf rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#SARS-CoV-2-not-conclusive"/>
+        <isExplainedBy rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_none_"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_p2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_p2">
+        <hasTestOutcomeOf rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#SARS-CoV-2-not-conclusive"/>
+        <isExplainedBy rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_none_"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_s1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_s1">
+        <rdf:type>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasResidenceIn"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AreaWithActiveCommunityTransmission"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasTraveledFrom"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AreaWithActiveCommunityTransmission"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasManifestationOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AcuteRespiratoryInfection"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasResidenceIn"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AreaWithActiveCommunityTransmission"/>
+            </owl:Restriction>
+        </rdf:type>
+        <hasManifestationOf rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#cough"/>
+        <hasResidenceIn rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#portugal-ovar"/>
+        <hasSymptomsStartingSince rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_014-days-ago"/>
+        <isExplainedBy rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_none_"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_s2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_s2">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasManifestationOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AcuteRespiratoryInfection"/>
+            </owl:Restriction>
+        </rdf:type>
+        <hasContactWith rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_p1"/>
+        <hasManifestationOf rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#suddenOnsetFever"/>
+        <hasSymptomsStartingSince rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_014-days-ago"/>
+        <isExplainedBy rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_none_"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_s3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_s3">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasManifestationOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AcuteRespiratoryInfection"/>
+            </owl:Restriction>
+        </rdf:type>
+        <isExplainedBy rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_none_"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_s4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_s4">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasManifestationOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AcuteRespiratoryInfection"/>
+            </owl:Restriction>
+        </rdf:type>
+        <hasContactWith rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#person_s2"/>
+        <isExplainedBy rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_none_"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#portugal-ovar -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#portugal-ovar">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AreaWithActiveCommunityTransmission"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#severe-with-required-hospitalization -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#severe-with-required-hospitalization">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AcuteRespiratoryInfection"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#spain -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#spain">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AreaWithActiveCommunityTransmission"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#suddenOnsetFever -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#suddenOnsetFever">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AcuteRespiratoryInfection"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#suica -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#suica">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#AreaWithActiveCommunityTransmission"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasManifestationOf"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#severe-with-required-hospitalization"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#isExplainedBy"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_none_"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasManifestationOf"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#severe-with-required-hospitalization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasManifestationOf"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#severe-with-required-hospitalization"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#isExplainedBy"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_none_"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#isExplainedBy"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#_none_"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasTestOutcomeOf"/>
+        <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#SARS-CoV-2-not-conclusive"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasTestOutcomeOf"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#SARS-CoV-2-not-conclusive"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasTestOutcomeOf"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#pan-coronavirus-positive"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Restriction>
+    <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasTestOutcomeOf"/>
+        <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#pan-coronavirus-positive"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasTestOutcomeOf"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#SARS-CoV-2-not-conclusive"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#hasTestOutcomeOf"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/ptrigo/ontologies/2020/COVID19_v01#pan-coronavirus-positive"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Restriction>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+

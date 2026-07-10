@@ -1,0 +1,492 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#"
+     xml:base="http://swat.cse.lehigh.edu/resources/onto/dblp.owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl">
+        <rdfs:comment>This file specifies in RDF Schema format the classes and properties for DBLP.
+	Adapted from SWETO_DBLP from UGA.
+    </rdfs:comment>
+        <rdfs:label>Dblp Ontology</rdfs:label>
+        <owl:versionInfo>2008-05-27</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#affiliation -->
+
+    <owl:ObjectProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#affiliation">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Person"/>
+        <rdfs:range rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Organization"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#at_university -->
+
+    <owl:ObjectProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#at_university">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#author -->
+
+    <owl:ObjectProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#author">
+        <owl:inverseOf rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#author_inv"/>
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Document"/>
+        <rdfs:range rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#author_inv -->
+
+    <owl:ObjectProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#author_inv">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Person"/>
+        <rdfs:range rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Document"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#chapter_of -->
+
+    <owl:ObjectProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#chapter_of"/>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#cites -->
+
+    <owl:ObjectProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#cites">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication"/>
+        <rdfs:range rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#coauthor -->
+
+    <owl:ObjectProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#coauthor">
+        <rdfs:range rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#editor -->
+
+    <owl:ObjectProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#editor">
+        <rdfs:range rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#in_series -->
+
+    <owl:ObjectProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#in_series">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#isIncludedIn -->
+
+    <owl:ObjectProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#isIncludedIn">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Article_in_Proceedings"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#publisher -->
+
+    <owl:ObjectProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#publisher">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Document"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Organization"/>
+                    <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#book_title -->
+
+    <owl:DatatypeProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#book_title">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Book"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#cdrom -->
+
+    <owl:DatatypeProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#cdrom">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#chapter -->
+
+    <owl:DatatypeProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#chapter">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#ee -->
+
+    <owl:DatatypeProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#ee">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#isbn -->
+
+    <owl:DatatypeProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#isbn">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#journal_name -->
+
+    <owl:DatatypeProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#journal_name">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Article_in_Journal"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#last_modified_date -->
+
+    <owl:DatatypeProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#last_modified_date">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Document"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#month -->
+
+    <owl:DatatypeProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#month">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Document"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#number -->
+
+    <owl:DatatypeProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#number">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#pages -->
+
+    <owl:DatatypeProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#pages"/>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#title -->
+
+    <owl:DatatypeProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#title">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Article_in_Proceedings"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#volume -->
+
+    <owl:DatatypeProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#volume">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#year -->
+
+    <owl:DatatypeProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#year">
+        <rdfs:domain rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Document"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Article_in_Journal -->
+
+    <owl:Class rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Article_in_Journal">
+        <rdfs:subClassOf rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication"/>
+    </owl:Class>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Article_in_Proceedings -->
+
+    <owl:Class rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Article_in_Proceedings">
+        <rdfs:subClassOf rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication"/>
+    </owl:Class>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Autor -->
+
+    <owl:Class rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Autor">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#author_inv"/>
+                        <owl:someValuesFrom rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Document"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#AutorOrg -->
+
+    <owl:Class rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#AutorOrg">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Autor"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#affiliation"/>
+                        <owl:someValuesFrom rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Organization"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Book -->
+
+    <owl:Class rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Book">
+        <rdfs:subClassOf rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication"/>
+    </owl:Class>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Document -->
+
+    <owl:Class rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Document"/>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Organization -->
+
+    <owl:Class rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Organization"/>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Person -->
+
+    <owl:Class rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Person"/>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication -->
+
+    <owl:Class rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Document"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#publisher"/>
+                        <owl:someValuesFrom rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Organization"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Document"/>
+    </owl:Class>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publishing_Organization -->
+
+    <owl:Class rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publishing_Organization">
+        <rdfs:subClassOf rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Organization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Unpublished -->
+
+    <owl:Class rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Unpublished">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Document"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#publisher"/>
+                        <owl:hasValue rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#none"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#doc01 -->
+
+    <owl:NamedIndividual rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#doc01">
+        <rdf:type rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Document"/>
+        <publisher rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#org01"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#doc02 -->
+
+    <owl:NamedIndividual rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#doc02">
+        <rdf:type rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Document"/>
+        <author rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#person02"/>
+        <publisher rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#none"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#doc03 -->
+
+    <owl:NamedIndividual rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#doc03">
+        <rdf:type rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Document"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#none -->
+
+    <owl:Thing rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#none">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#org01 -->
+
+    <owl:NamedIndividual rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#org01"/>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#org02 -->
+
+    <owl:NamedIndividual rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#org02"/>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#person01 -->
+
+    <owl:NamedIndividual rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#person01">
+        <rdf:type rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Person"/>
+        <affiliation rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#org01"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#person02 -->
+
+    <owl:NamedIndividual rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#person02">
+        <rdf:type rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Person"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#person03 -->
+
+    <owl:NamedIndividual rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#person03">
+        <rdf:type rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Person"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://swat.cse.lehigh.edu/resources/onto/dblp.owl#pub01 -->
+
+    <owl:NamedIndividual rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#pub01">
+        <rdf:type rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Publication"/>
+        <author rdf:resource="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#person01"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Article_in_Journal"/>
+            <rdf:Description rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Article_in_Proceedings"/>
+            <rdf:Description rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#Book"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+

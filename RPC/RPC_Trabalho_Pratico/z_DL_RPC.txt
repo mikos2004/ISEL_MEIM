@@ -1,0 +1,62 @@
+#### Listar todas as pessoas que são autores
+"""
+Person and author_inv some Document
+
+OU
+
+Autor
+"""
+
+#### Listar publicações que possuem publisher
+"""
+Document and (publisher some Organization)
+
+OU
+
+Publication
+"""
+
+#### Listar documentos que não possuem publisher (Unpublished)
+"""
+Document and (publisher value none)
+"""
+
+#### Listar autores que têm afiliação com alguma organização
+"""
+AutorOrg
+"""
+
+#### Listar AIJ
+"""
+Article_in_Journal
+"""
+
+#### Listar AIP
+"""
+Article_in_Proceedings
+"""
+
+#### Listar livros
+"""
+Book
+"""
+
+#### Listar publicações publicadas por uma editora (ex: Springer)
+"""
+Publication and publisher value springer
+"""
+
+#### Listar pessoas com nome conhecido
+"""
+Person and name some xsd:string
+"""
+
+#### Listar documentos escritos por uma pessoa (ex: Kenji Doya)
+"""
+Document and author value kenji_doya
+"""
+
+#### Listar publicações com ano específico (ex: 2022)
+"""
+Publication and year value "2022"^^xsd:string
+"""

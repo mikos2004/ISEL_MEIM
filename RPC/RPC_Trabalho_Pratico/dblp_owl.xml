@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#" 
+  xml:base="http://swat.cse.lehigh.edu/resources/onto/dblp.owl" >
+  
+  <owl:Ontology rdf:about="">
+    <rdfs:label>Dblp Ontology</rdfs:label>
+    <rdfs:comment>This file specifies in RDF Schema format the classes and properties for DBLP.
+	Adapted from SWETO_DBLP from UGA.
+    </rdfs:comment>
+    <owl:versionInfo>2008-05-27</owl:versionInfo>
+  </owl:Ontology>
+
+  <owl:Class rdf:about="#Organization" />
+  <owl:Class rdf:about="#Document" />
+  <owl:Class rdf:about="#Person" />
+  
+  <owl:Class rdf:about="#Publication">
+    <rdfs:subClassOf rdf:resource="#Document"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Edited_Publication">
+    <rdfs:subClassOf rdf:resource="#Publication"/>
+  </owl:Class>
+  
+  <owl:Class rdf:about="#Serial_Publication">
+    <rdfs:subClassOf rdf:resource="#Publication"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Journal">
+    <rdfs:subClassOf rdf:resource="#Serial_Publication"/>
+  </owl:Class>
+  
+  <owl:Class rdf:about="#Thesis">
+    <rdfs:subClassOf rdf:resource="#Publication"/>
+  </owl:Class>
+    <owl:Class rdf:about="#Masters_Thesis">
+    <rdfs:subClassOf rdf:resource="#Thesis"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Doctoral_Dissertation">
+    <rdfs:subClassOf rdf:resource="#Thesis"/>
+  </owl:Class>
+  
+  <owl:Class rdf:about="#Article">
+    <rdfs:subClassOf rdf:resource="#Publication"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Article_in_Journal">
+    <rdfs:subClassOf rdf:resource="#Publication"/>
+  </owl:Class>
+  
+  <owl:Class rdf:about="#Article_in_Proceedings">
+    <rdfs:subClassOf rdf:resource="#Publication"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Book">
+    <rdfs:subClassOf rdf:resource="#Publication"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Book_Chapter">
+    <rdfs:subClassOf rdf:resource="#Publication"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Edited_Book">
+    <rdfs:subClassOf rdf:resource="#Edited_Publication"/>
+    <rdfs:subClassOf rdf:resource="#Book"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Proceedings">
+    <rdfs:subClassOf rdf:resource="#Publication"/>
+  </owl:Class>
+
+
+  <owl:Class rdf:about="#Publishing_Organization">
+    <rdfs:subClassOf rdf:resource="#Organization"/>
+  </owl:Class>
+
+  
+  <owl:Class rdf:about="#School">
+    <rdfs:subClassOf rdf:resource="#Organization"/>
+  </owl:Class>
+  <owl:Class rdf:about="#University">
+    <rdfs:subClassOf rdf:resource="#School"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Series" />
+
+  <owl:Class rdf:about="#Webpage">
+    <rdfs:subClassOf rdf:resource="#Document"/>
+  </owl:Class>
+
+  
+<!-- *********    Object Properties   ********  -->
+
+
+  <owl:ObjectProperty rdf:about="#at_university">
+    <rdfs:range rdf:resource="#University"/>
+    <rdfs:domain rdf:resource="#Publication"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#chapter_of">
+    <rdfs:domain rdf:resource="#Book_Chapter"/>
+    <rdfs:range rdf:resource="#Edited_Book"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#cites">
+    <rdfs:range rdf:resource="#Publication"/>
+    <rdfs:domain rdf:resource="#Publication"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#isIncludedIn">
+    <rdfs:range rdf:resource="#Proceedings"/>
+    <rdfs:domain rdf:resource="#Article_in_Proceedings"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#editor">
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:domain rdf:resource="#Edited_Publication"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#affiliation">
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Organization"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#in_series">
+    <rdfs:range rdf:resource="#Series"/>
+    <rdfs:domain rdf:resource="#Publication"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#author">
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:domain rdf:resource="#Publication"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#coauthor">
+    <rdfs:range rdf:resource="#Person"/>
+	<rdfs:range rdf:resource="#Person"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#publisher"/>
+
+
+  <owl:DatatypeProperty rdf:about="#title">
+    <rdfs:domain rdf:resource="#Publication" />
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#book_title">
+    <rdfs:domain rdf:resource="#Publication"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#cdrom">
+    <rdfs:domain rdf:resource="#Publication"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#chapter">
+    <rdfs:domain rdf:resource="#Publication"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#ee">
+    <rdfs:domain rdf:resource="#Publication"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#isbn">
+    <rdfs:domain rdf:resource="#Publication"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#journal_name">
+    <rdfs:domain rdf:resource="#Journal"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#last_modified_date">
+    <rdfs:domain rdf:resource="#Document"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#month">
+    <rdfs:domain rdf:resource="#Document"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#number">
+    <rdfs:domain rdf:resource="#Publication"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#pages">
+    <rdfs:domain rdf:resource="#Pages" />
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#volume">
+    <rdfs:domain rdf:resource="#Publication"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#year">
+    <rdfs:domain rdf:resource="#Document"/>
+  </owl:DatatypeProperty>
+
+</rdf:RDF>

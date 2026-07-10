@@ -1,0 +1,180 @@
+#### LISTAR TODAS AS PESSOAS E SEUS NOMES
+"""
+PREFIX rpc: <http://swat.cse.lehigh.edu/resources/onto/dblp.owl#>
+
+SELECT ?person ?name
+WHERE {
+  ?person a rpc:Person .
+  ?person rpc:name ?name .
+}
+ORDER BY ?name
+"""
+
+#### LISTAR PUBS, TITLES E ANOS
+"""
+PREFIX rpc: <http://swat.cse.lehigh.edu/resources/onto/dblp.owl#>
+
+SELECT ?pub ?title ?year
+WHERE {
+  ?pub a rpc:Publication .
+  OPTIONAL { ?pub rpc:title ?title . }
+  OPTIONAL { ?pub rpc:year ?year . }
+}
+LIMIT 50
+"""
+
+#### CONTAR O NÚMERO DE PUBLICAÇÕES POR TIPO
+"""
+PREFIX rpc: <http://swat.cse.lehigh.edu/resources/onto/dblp.owl#>
+
+SELECT ?type (COUNT(?pub) AS ?count)
+WHERE {
+  ?pub a ?type .
+  FILTER(?type IN (rpc:Publication, rpc:Article_in_Journal, rpc:Article_in_Proceedings, rpc:Book))
+}
+GROUP BY ?type
+ORDER BY DESC(?count)
+"""
+
+#### LISTAR AUTORES, PUBS E ANOS
+"""
+PREFIX rpc: <http://swat.cse.lehigh.edu/resources/onto/dblp.owl#>
+
+SELECT ?authorName ?pubTitle ?year
+WHERE {
+  ?person rpc:name ?authorName .
+  ?person rpc:author_inv ?pub .
+  OPTIONAL { ?pub rpc:title ?pubTitle . }
+  OPTIONAL { ?pub rpc:year ?year . }
+}
+ORDER BY ?authorName
+LIMIT 100
+"""
+
+#### AUTORES QUE PUBLICARAM LIVROS (BOOKS)
+"""
+PREFIX rpc: <http://swat.cse.lehigh.edu/resources/onto/dblp.owl#>
+
+SELECT DISTINCT ?authorName ?bookTitle ?year
+WHERE {
+  ?person rpc:name ?authorName .
+  ?person rpc:author_inv ?book .
+  ?book a rpc:Book .
+  OPTIONAL { ?book rpc:book_title ?bookTitle . }
+  OPTIONAL { ?book rpc:year ?year . }
+}
+ORDER BY ?authorName
+"""
+
+#### AUTORES COM PUBLICAÇÕES EM JOURNALS (ARTICLE_IN_JOURNAL)
+"""
+PREFIX rpc: <http://swat.cse.lehigh.edu/resources/onto/dblp.owl#>
+
+SELECT ?authorName ?journalName ?year
+WHERE {
+  ?person rpc:name ?authorName .
+  ?person rpc:author_inv ?article .
+  ?article a rpc:Article_in_Journal .
+  OPTIONAL { ?article rpc:journal_name ?journalName . }
+  OPTIONAL { ?article rpc:year ?year . }
+}
+ORDER BY ?authorName
+LIMIT 100
+"""
+
+#### CONTAR PUBLICAÇÕES POR AUTOR
+"""
+PREFIX rpc: <http://swat.cse.lehigh.edu/resources/onto/dblp.owl#>
+
+SELECT ?authorName (COUNT(?pub) AS ?publicationCount)
+WHERE {
+  ?person rpc:name ?authorName .
+  ?person rpc:author_inv ?pub .
+}
+GROUP BY ?authorName
+ORDER BY DESC(?publicationCount)
+"""
+
+#### PUBLICAÇÕES MAIS RECENTES (ANO >= 2020)
+"""
+PREFIX rpc: <http://swat.cse.lehigh.edu/resources/onto/dblp.owl#>
+
+SELECT ?title ?year ?type
+WHERE {
+  ?pub a ?type .
+  ?pub rpc:title ?title .
+  ?pub rpc:year ?year .
+  FILTER(?type != rpc:Document)
+  FILTER(xsd:integer(?year) >= 2020)
+}
+ORDER BY DESC(?year)
+LIMIT 50
+"""
+
+#### PUBLICAÇÕES POR INTERVALO DE ANOS
+"""
+PREFIX rpc: <http://swat.cse.lehigh.edu/resources/onto/dblp.owl#>
+
+SELECT (COUNT(?pub) AS ?count) ?year
+WHERE {
+  ?pub rpc:year ?year .
+  FILTER(xsd:integer(?year) >= 1900 && xsd:integer(?year) <= 2026)
+}
+GROUP BY ?year
+ORDER BY ?year
+"""
+
+#### ARTIGOS EM PROCEEDINGS COM EDITOR/PUBLISHER
+"""
+PREFIX rpc: <http://swat.cse.lehigh.edu/resources/onto/dblp.owl#>
+
+SELECT ?title ?year ?publisher
+WHERE {
+  ?pub a rpc:Article_in_Proceedings .
+  ?pub rpc:title ?title .
+  OPTIONAL { ?pub rpc:year ?year . }
+  OPTIONAL { ?pub rpc:publisher ?publisher . }
+}
+LIMIT 50
+"""
+
+#### PUBLICAÇÔES POR ANO DE UM AUTOR ESPECÍFICO (EDSGER W. DIJKSTRA)
+"""
+PREFIX rpc: <http://swat.cse.lehigh.edu/resources/onto/dblp.owl#>
+
+SELECT ?year (COUNT(?pub) AS ?count)
+WHERE {
+  ?person rpc:name "Edsger W. Dijkstra" .
+  ?person rpc:author_inv ?pub .
+  ?pub rpc:year ?year .
+}
+GROUP BY ?year
+ORDER BY ?year
+"""
+
+#### EDITORAS/ORGANIZAÇÕES MAIS FREQUENTES
+"""
+PREFIX rpc: <http://swat.cse.lehigh.edu/resources/onto/dblp.owl#>
+
+SELECT ?publisher (COUNT(?pub) AS ?count)
+WHERE {
+  ?pub rpc:publisher ?publisher .
+  ?pub a rpc:Publication .
+}
+GROUP BY ?publisher
+ORDER BY DESC(?count)
+"""
+
+#### EDITORAS QUE PUBLICARAM LIVROS E ESSES LIVROS
+"""
+PREFIX rpc: <http://swat.cse.lehigh.edu/resources/onto/dblp.owl#>
+
+SELECT DISTINCT ?publisher ?bookTitle ?year
+WHERE {
+  ?book a rpc:Book .
+  ?book rpc:publisher ?publisher .
+  ?book rpc:book_title ?bookTitle .
+  OPTIONAL { ?book rpc:year ?year . }
+}
+ORDER BY ?publisher
+"""

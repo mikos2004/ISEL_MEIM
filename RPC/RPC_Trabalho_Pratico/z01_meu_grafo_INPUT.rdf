@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rpc="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#"
+>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#ousmane_diallo">
+    <rpc:name>Ousmane Diallo</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#shalini_jain_0001">
+    <rpc:name>Shalini Jain 0001</rpc:name>
+  </rpc:Person>
+  <owl:DatatypeProperty rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#name"/>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#shalini_jain_0003">
+    <rpc:name>Shalini Jain 0003</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#shalini_jain_0002">
+    <rpc:name>Shalini Jain 0002</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#grigorie_bogdan_marcus">
+    <rpc:name>Grigorie Bogdan Marcus</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#areti_karamanou">
+    <rpc:name>Areti Karamanou</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#doo_jin_kim">
+    <rpc:name>Doo-Jin Kim</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#trieu_phat_luu">
+    <rpc:name>Trieu Phat Luu</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#frederic_brenton_fitch">
+    <rpc:name>Frederic Brenton Fitch</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#edsger_w_dijkstra">
+    <rpc:name>Edsger W. Dijkstra</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#francesc_ribas">
+    <rpc:name>Francesc Ribas</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#michael_ley">
+    <rpc:name>Michael Ley</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#asghar_ataollahi">
+    <rpc:name>Asghar Ataollahi</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#keisuke_naniwa">
+    <rpc:name>Keisuke Naniwa</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#takahiro_okamoto">
+    <rpc:name>Takahiro Okamoto</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#roberto_sommariva">
+    <rpc:name>Roberto Sommariva</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#ulrike_unger">
+    <rpc:name>Ulrike Unger</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#kenji_doya">
+    <rpc:name>Kenji Doya</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#a_buxbaum">
+    <rpc:name>A. Buxbaum</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#onur_yilmaz">
+    <rpc:name>Onur Yilmaz</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#arnaud_charnoz">
+    <rpc:name>Arnaud Charnoz</rpc:name>
+  </rpc:Person>
+  <rpc:Person rdf:about="http://swat.cse.lehigh.edu/resources/onto/dblp.owl#antonio_manuel_fernandez_villamor">
+    <rpc:name>Antonio Manuel Fernandez Villamor</rpc:name>
+  </rpc:Person>
+</rdf:RDF>

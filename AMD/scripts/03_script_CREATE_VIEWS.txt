@@ -1,0 +1,175 @@
+--#############
+--# Tiago Alcobia (50521)
+--# Miguel Alcobia (50746)
+--# Fábio Pestana (50756)
+--#############
+
+--==============
+-- DB connection
+--==============
+\set dataBase db_prj
+\set userName postgres
+\connect :dataBase :userName
+
+--==========================
+--==========================
+
+-- additional information about "client_encoding" in:
+-- http://www.postgresql.org/docs/9.6/static/multibyte.html
+\encoding WIN1252
+
+---------------------------------
+DROP VIEW IF EXISTS v1_dataset;
+DROP VIEW IF EXISTS v1;
+DROP VIEW IF EXISTS v1_domain;
+DROP VIEW IF EXISTS v1_class;
+DROP VIEW IF EXISTS v2_dataset;
+DROP VIEW IF EXISTS v2_attrType;
+---------------------------------
+
+-- Primeiro, precisamos criar uma view que combine as doenças para identificar astigmatismo
+CREATE OR REPLACE VIEW v_prescription_with_astigmatic AS
+SELECT 
+    pdd.patient_doctor_disease_id AS prescriptionID,
+    p.patientID,
+    p.fullName AS patientName,
+    p.birthDate,
+    CASE 
+        WHEN EXTRACT(YEAR FROM AGE(p.birthDate)) < 25 THEN 'young'
+        WHEN EXTRACT(YEAR FROM AGE(p.birthDate)) BETWEEN 25 AND 45 THEN 'pre-presbyopic'
+        ELSE 'presbyopic'
+    END AS ageGroup,
+    d.doctorID,
+    d.fullName AS doctorName,
+    -- Usar a doença principal (myopia ou hypermetropia)
+    ds.diseaseName AS prescription,
+    -- Verificar se tem astigmatismo na tabela de doenças múltiplas
+    CASE 
+        WHEN EXISTS (
+            SELECT 1 
+            FROM prescription_diseases pd
+            JOIN DISEASE ds_ast ON pd.diseaseID = ds_ast.diseaseID
+            WHERE pd.patient_doctor_disease_id = pdd.patient_doctor_disease_id
+            AND ds_ast.diseaseName = 'astigmatism'
+        ) THEN 'yes' 
+        ELSE 'no' 
+    END AS astigmatic,
+    pde.examType,
+    pde.examDate AS prescriptionDate,
+    tr.tearRateType AS tearRate,
+    rl.lensType AS recommendedLens
+FROM patient_doctor_disease pdd
+JOIN PATIENT p ON pdd.patientID = p.patientID
+JOIN DOCTOR d ON pdd.doctorID = d.doctorID
+JOIN DISEASE ds ON pdd.diseaseID = ds.diseaseID
+JOIN patient_doctor_exam pde ON pdd.patient_doctor_exam_id = pde.patient_doctor_exam_id
+JOIN tear_rate tr ON pde.tearRateID = tr.tearRateID
+JOIN recommended_lens rl ON pdd.lensID = rl.lensID;
+
+-- Create main view with prescription data
+CREATE VIEW v1 AS
+SELECT 
+    agegroup AS age,
+    prescription,
+    astigmatic,
+    tearrate AS tear_rate,
+    recommendedlens AS lenses
+FROM 
+    v_prescription_with_astigmatic
+WHERE prescription IN ('myopia', 'hypermetropia')  -- Filtra apenas as prescrições principais
+ORDER BY 
+    agegroup, 
+    prescription, 
+    astigmatic, 
+    tearrate;
+
+CREATE VIEW v1_domain AS
+SELECT 
+    'age' AS age,
+    'prescription' AS prescription, 
+    'astigmatic' AS astigmatic,
+    'tear_rate' AS tear_rate,
+    'lenses' AS lenses;
+
+CREATE VIEW v1_attr_types AS
+SELECT 
+    'discrete' AS age,
+    'discrete' AS prescription,
+    'discrete' AS astigmatic, 
+    'discrete' AS tear_rate,
+    'discrete' AS lenses;
+
+CREATE VIEW v1_class AS
+SELECT 
+    '' AS age,
+    '' AS prescription,
+    '' AS astigmatic,
+    '' AS tear_rate,
+    'class' AS lenses;
+
+-- View principal corrigida SEM linhas duplicadas
+CREATE VIEW v1_dataset AS
+SELECT 
+    age, 
+    prescription, 
+    astigmatic, 
+    tear_rate, 
+    lenses
+FROM (
+    -- Linha 1: Nomes dos atributos
+    SELECT 1 as sort_order, age, prescription, astigmatic, tear_rate, lenses FROM v1_domain
+    UNION ALL
+    -- Linha 2: Tipos dos atributos
+    SELECT 2 as sort_order, age, prescription, astigmatic, tear_rate, lenses FROM v1_attr_types
+    UNION ALL
+    -- Linha 3: Especificação da classe
+    SELECT 3 as sort_order, age, prescription, astigmatic, tear_rate, lenses FROM v1_class
+    UNION ALL
+    -- Linhas 4+: Dados
+    SELECT 4 as sort_order, age::text, prescription::text, astigmatic::text, tear_rate::text, lenses::text FROM v1
+) AS orange_3row_header
+ORDER BY sort_order;
+
+-- Create attribute type view for Orange Header-with-Attribute-Type format
+CREATE VIEW v2_attrType AS
+SELECT 
+    'age#D' AS age,
+    'prescription#D' AS prescription,
+    'astigmatic#D' AS astigmatic,
+    'tear_rate#D' AS tear_rate,
+    'lenses#c' AS lenses;
+
+-- Create dataset view for Orange Header-with-Attribute-Type format
+CREATE VIEW v2_dataset AS
+SELECT 
+    age, 
+    prescription, 
+    astigmatic, 
+    tear_rate, 
+    lenses
+FROM (
+    SELECT 1 as sort_order, age, prescription, astigmatic, tear_rate, lenses FROM v2_attrType
+    UNION ALL
+    SELECT 2 as sort_order, age, prescription, astigmatic, tear_rate, lenses FROM v1
+) AS header_with_attr_type
+ORDER BY 
+    sort_order,
+    CASE 
+        WHEN sort_order = 2 THEN age
+        ELSE ''
+    END;
+
+-- Test the dataset views
+SELECT 'v1_dataset (3-Row-Header):' AS info;
+SELECT * FROM v1_dataset;
+
+SELECT 'v2_dataset (Header-with-Attribute-Type):' AS info;  
+SELECT * FROM v2_dataset;
+
+-- Verificar contagens
+SELECT 'v1 count:' as info, COUNT(*) FROM v1;
+SELECT 'v1_domain count:' as info, COUNT(*) FROM v1_domain;
+SELECT 'v1_class count:' as info, COUNT(*) FROM v1_class;
+SELECT 'v1_dataset count:' as info, COUNT(*) FROM v1_dataset;
+SELECT 'v2_attrType count:' as info, COUNT(*) FROM v2_attrType;
+SELECT 'v2_dataset count:' as info, COUNT(*) FROM v2_dataset;

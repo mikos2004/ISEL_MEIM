@@ -1,0 +1,10 @@
+java -jar start.jar jetty.http.port=8280
+
+-----------------------------------------------
+
+export.rdf -> TBox e Abox exportadas num ficheiro a partir do RDF4J
+schema.rdf -> Ontologia do DBLP
+
+GG_<...>.py - ficheiros feitos por nós
+
+--------------------------------------------

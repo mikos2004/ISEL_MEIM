@@ -1,0 +1,1 @@
+Foram retirados todos os ficheiros markdown existentes nesta parta do corpus.

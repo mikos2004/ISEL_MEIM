@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:ns1="http://xmlns.com/foaf/0.1/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:ns2="http://myNS/"
+>
+  <ns1:Person rdf:nodeID="N9013a4e7ec954963a696b85a30e67d4b">
+    <ns2:temPublicacaoComTitulo>Modal Functions in Two-Valued Logic.</ns2:temPublicacaoComTitulo>
+    <ns2:temPublicacaoComTitulo>Closure and Quine's *101.</ns2:temPublicacaoComTitulo>
+    <ns2:temPublicacaoComTitulo>The Hypothesis That Infinite Classes are Similar.</ns2:temPublicacaoComTitulo>
+    <ns2:temPublicacaoComTitulo>A System of Formal Logic Without an Analogue to the Curry W Operator.</ns2:temPublicacaoComTitulo>
+    <ns2:temPublicacaoComTitulo>Note on Modal Functions.</ns2:temPublicacaoComTitulo>
+    <ns1:name>Frederic Brenton Fitch</ns1:name>
+    <ns2:temPublicacaoComTitulo>Corrections to Two Papers on Modal Logic.</ns2:temPublicacaoComTitulo>
+    <ns2:temPublicacaoComTitulo>A Basic Logic.</ns2:temPublicacaoComTitulo>
+    <ns2:temPublicacaoComTitulo>Representations of Calculi.</ns2:temPublicacaoComTitulo>
+    <ns2:temPublicacaoComTitulo>A Minimum Calculus for Logic.</ns2:temPublicacaoComTitulo>
+    <ns2:temPublicacaoComTitulo>The Consistency of the Ramified Principia.</ns2:temPublicacaoComTitulo>
+  </ns1:Person>
+  <ns1:Person rdf:nodeID="Nde6f1b60061f4fafbf8d90be7625f300">
+    <ns2:temPublicacaoComTitulo>Some comments on the aims of MIRFAC.</ns2:temPublicacaoComTitulo>
+    <ns2:temPublicacaoComTitulo>Communication with an Automatic Computer</ns2:temPublicacaoComTitulo>
+    <ns2:temPublicacaoComTitulo>ALGOL Sub-Committee Report - Extensions.</ns2:temPublicacaoComTitulo>
+    <ns2:temPublicacaoComTitulo>Some Meditations on Advanced Programming.</ns2:temPublicacaoComTitulo>
+    <ns2:temPublicacaoComTitulo>Letter to the editor: defense of ALGOL 60.</ns2:temPublicacaoComTitulo>
+    <ns1:name>Edsger W. Dijkstra</ns1:name>
+  </ns1:Person>
+</rdf:RDF>

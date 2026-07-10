@@ -1,0 +1,10 @@
+{
+  "dataset": "lenses_3RowHeader",
+  "model_type": "GaussianNB",
+  "timestamp": "20251108_185725",
+  "class_values": [
+    "hard",
+    "none",
+    "soft"
+  ]
+}

@@ -1,0 +1,185 @@
+--#############
+--# Tiago Alcobia (50521)
+--# Miguel Alcobia (50746)
+--# Fábio Pestana (50756)
+--#############
+
+--==============
+-- DB connection
+--==============
+\set dataBase db_prj
+;
+\set userName postgres
+;
+\connect :dataBase :userName
+;
+--==========================
+--==========================
+
+----------------------
+-- Populate tables
+----------------------
+
+-- Insert patients
+INSERT INTO PATIENT (fullName, birthDate) VALUES
+('João Almeida', '1990-05-15'),
+('Maria Santos', '1985-08-22'),
+('Carlos Lima', '1978-12-10'),
+('Ana Costa', '1995-03-30'),
+('Pedro Oliveira', '1965-07-18'),
+('Sofia Rodrigues', '2000-11-05'),
+('Miguel Pereira', '1988-02-14'),
+('Inês Fernandes', '1972-09-25'),
+('Luís Martins', '1992-06-20'),
+('Catarina Sousa', '1983-04-12'),
+-- Novos pacientes para completar 30 instâncias
+('Rui Carvalho', '1998-07-08'),
+('Tânia Neves', '1987-11-19'),
+('Bruno Coelho', '1975-03-22'),
+('Diana Ramos', '2002-01-14'),
+('Hugo Pinto', '1968-12-03'),
+('Laura Monteiro', '1993-09-27'),
+('Ricardo Tavares', '1980-06-11'),
+('Patrícia Correia', '1977-04-05'),
+('André Fonseca', '1996-08-29'),
+('Sandra Marques', '1989-02-16');
+
+-- Insert doctors
+INSERT INTO DOCTOR (fullName) VALUES
+('Dr. Silva'),
+('Dr. Santos'),
+('Dr. Costa'),
+('Dr. Oliveira'),
+('Dr. Rodrigues'),
+('Dr. Fernandes'),
+('Dr. Gomes');
+
+-- Insert diseases (astigmatism agora é uma doença)
+INSERT INTO DISEASE (diseaseName, description) VALUES
+('myopia', 'Nearsightedness - difficulty seeing distant objects'),
+('hypermetropia', 'Farsightedness - difficulty seeing close objects'),
+('astigmatism', 'Blurred vision due to irregular cornea shape'),
+('presbyopia', 'Age-related difficulty in focusing on close objects');
+
+-- Insert tear_rate types
+INSERT INTO tear_rate (tearRateType) VALUES
+('normal'),
+('reduced');
+
+-- Insert recommended_lens types
+INSERT INTO recommended_lens (lensType) VALUES
+('hard'),
+('soft'),
+('none');
+
+-- Insert exams (patient_doctor_exam) com tearRateID
+INSERT INTO patient_doctor_exam (patientID, doctorID, examDate, examType, tearRateID) VALUES
+-- young patients (ID 1, 4, 6, 9, 11, 14, 16, 19)
+(1, 1, '2024-01-15', 'refraction', 1),  -- normal
+(4, 2, '2024-01-18', 'refraction', 1),  -- normal
+(6, 5, '2024-01-20', 'refraction', 2),  -- reduced
+(9, 3, '2024-01-23', 'tear_production', 1),  -- normal
+(11, 1, '2024-02-01', 'refraction', 1),  -- normal
+(14, 4, '2024-02-05', 'tear_production', 2),  -- reduced
+(16, 2, '2024-02-08', 'refraction', 1),  -- normal
+(19, 3, '2024-02-12', 'refraction', 1),  -- normal
+
+-- pre-presbyopic patients (ID 2, 3, 7, 10, 12, 13, 17, 18, 20)
+(2, 1, '2024-01-16', 'refraction', 1),  -- normal
+(3, 3, '2024-01-17', 'tear_production', 2),  -- reduced
+(7, 2, '2024-01-21', 'refraction', 1),  -- normal
+(10, 4, '2024-01-24', 'refraction', 1),  -- normal
+(12, 5, '2024-02-02', 'refraction', 1),  -- normal
+(13, 1, '2024-02-06', 'tear_production', 2),  -- reduced
+(17, 3, '2024-02-09', 'refraction', 1),  -- normal
+(18, 2, '2024-02-11', 'refraction', 1),  -- normal
+(20, 4, '2024-02-14', 'refraction', 1),  -- normal
+
+-- presbyopic patients (ID 5, 8, 15)
+(5, 4, '2024-01-19', 'slit_lamp', 2),  -- reduced
+(8, 1, '2024-01-22', 'slit_lamp', 2),  -- reduced
+(15, 3, '2024-02-07', 'slit_lamp', 2);  -- reduced
+
+-- Insert patient_doctor_disease com todas as 30 instâncias (incluindo dados do ficheiro .tab)
+INSERT INTO patient_doctor_disease (patientID, doctorID, diseaseID, patient_doctor_exam_id, lensID) VALUES
+-- Instâncias baseadas no ficheiro .tab (primeiras 16 instâncias)
+-- soft + pre-presbyopic + hypermetropia + no + normal
+(2, 1, 2, 9, 2),
+-- soft + pre-presbyopic + hypermetropia + no + normal (duplicado no .tab)
+(7, 2, 2, 11, 2),
+-- none + pre-presbyopic + hypermetropia + no + normal
+(10, 4, 2, 12, 3),
+-- soft + pre-presbyopic + hypermetropia + no + normal
+(12, 5, 2, 13, 2),
+-- none + pre-presbyopic + hypermetropia + yes + normal
+(13, 1, 2, 14, 3),
+-- none + pre-presbyopic + hypermetropia + yes + normal
+(17, 3, 2, 15, 3),
+-- soft + pre-presbyopic + myopia + no + normal
+(18, 2, 1, 16, 2),
+-- soft + pre-presbyopic + myopia + no + normal
+(20, 4, 1, 17, 2),
+-- hard + pre-presbyopic + myopia + yes + normal
+(2, 1, 1, 9, 1),
+-- hard + pre-presbyopic + myopia + yes + normal
+(7, 2, 1, 11, 1),
+-- hard + pre-presbyopic + myopia + yes + normal
+(10, 4, 1, 12, 1),
+-- none + presbyopic + hypermetropia + yes + reduced
+(5, 4, 2, 18, 3),
+-- none + presbyopic + hypermetropia + yes + reduced
+(8, 1, 2, 19, 3),
+-- none + presbyopic + myopia + yes + reduced
+(15, 3, 1, 20, 3),
+-- none + presbyopic + myopia + yes + reduced
+(5, 4, 1, 18, 3),
+-- none + young + hypermetropia + no + reduced
+(6, 5, 2, 3, 3),
+-- young + myopia + no + normal = soft
+(1, 1, 1, 1, 2),
+-- young + hypermetropia + yes + normal = hard
+(4, 2, 2, 2, 1),
+-- young + myopia + yes + reduced = none
+(9, 3, 1, 4, 3),
+-- young + hypermetropia + no + normal = soft
+(11, 1, 2, 5, 2),
+-- pre-presbyopic + myopia + yes + reduced = none
+(3, 3, 1, 10, 3),
+-- pre-presbyopic + hypermetropia + yes + normal = none
+(13, 1, 2, 14, 3),
+-- presbyopic + myopia + yes + normal = hard
+(8, 1, 1, 19, 1),
+-- young + myopia + no + reduced = none
+(14, 4, 1, 6, 3),
+-- pre-presbyopic + hypermetropia + no + reduced = none
+(17, 3, 2, 15, 3),
+-- presbyopic + hypermetropia + no + normal = soft
+(15, 3, 2, 20, 2),
+-- young + hypermetropia + yes + reduced = none
+(16, 2, 2, 7, 3),
+-- pre-presbyopic + myopia + no + normal = soft
+(18, 2, 1, 16, 2),
+-- presbyopic + myopia + no + reduced = none
+(5, 4, 1, 18, 3),
+-- young + myopia + yes + normal = hard
+(19, 3, 1, 8, 1);
+
+-- Insert prescription_diseases (apenas para casos com astigmatismo)
+INSERT INTO prescription_diseases (patient_doctor_disease_id, diseaseID) VALUES
+-- Baseado no ficheiro .tab e casos com astigmatismo
+(5, 3),   -- none + pre-presbyopic + hypermetropia + yes + normal
+(6, 3),   -- none + pre-presbyopic + hypermetropia + yes + normal
+(9, 3),   -- hard + pre-presbyopic + myopia + yes + normal
+(10, 3),  -- hard + pre-presbyopic + myopia + yes + normal
+(11, 3),  -- hard + pre-presbyopic + myopia + yes + normal
+(12, 3),  -- none + presbyopic + hypermetropia + yes + reduced
+(13, 3),  -- none + presbyopic + hypermetropia + yes + reduced
+(14, 3),  -- none + presbyopic + myopia + yes + reduced
+(15, 3),  -- none + presbyopic + myopia + yes + reduced
+-- Casos adicionais com astigmatismo
+(18, 3),  -- young + hypermetropia + yes + normal
+(21, 3),  -- pre-presbyopic + myopia + yes + reduced
+(22, 3),  -- pre-presbyopic + hypermetropia + yes + normal
+(24, 3),  -- presbyopic + myopia + yes + normal
+(27, 3),  -- young + hypermetropia + yes + reduced
+(30, 3);  -- young + myopia + yes + normal

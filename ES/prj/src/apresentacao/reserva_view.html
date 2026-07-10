@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Hotel</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .form-container {
+            padding: 30px;
+        }
+        
+        .form-section {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            color: #2c5282;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            font-weight: 600;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+        
+        .form-group {
+            flex: 1 0 300px;
+            margin: 0 10px 20px;
+            min-width: 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #4a5568;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .dates-container {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .date-group {
+            flex: 1;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        .confirm-button {
+            background: linear-gradient(to right, #2c5282, #1a3a5f);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(28, 63, 102, 0.2);
+        }
+        
+        .confirm-button:hover {
+            background: linear-gradient(to right, #1a3a5f, #2c5282);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(28, 63, 102, 0.3);
+        }
+        
+        .required::after {
+            content: " *";
+            color: #e53e3e;
+        }
+        
+        .form-note {
+            font-size: 14px;
+            color: #718096;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #718096;
+            font-size: 14px;
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        @media (max-width: 768px) {
+            .dates-container {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .form-group {
+                flex: 1 0 100%;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Reserva de Hotel</h1>
+        </header>
+        
+        <div class="form-container">
+            <form action="#" method="post">
+                <!-- Informações Pessoais -->
+                <div class="form-section">
+                    <h2 class="section-title">Informações Pessoais</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nome_completo" class="required">Nome Completo</label>
+                            <input type="text" id="nome_completo" name="nome_completo" required placeholder="Ex: João Silva Santos">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cc_number" class="required">Número do Cartão de Cidadão</label>
+                            <input type="text" id="cc_number" name="cc_number" required placeholder="Ex: 12345678">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="doc_validade" class="required">Data de Validade do Documento</label>
+                            <input type="date" id="doc_validade" name="doc_validade" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="data_nascimento" class="required">Data de Nascimento</label>
+                            <input type="date" id="data_nascimento" name="data_nascimento" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nacionalidade" class="required">Nacionalidade</label>
+                            <select id="nacionalidade" name="nacionalidade" required>
+                                <option value="">Selecione uma nacionalidade</option>
+                                <option value="pt">Portuguesa</option>
+                                <option value="br">Brasileira</option>
+                                <option value="es">Espanhola</option>
+                                <option value="fr">Francesa</option>
+                                <option value="it">Italiana</option>
+                                <option value="de">Alemã</option>
+                                <option value="uk">Inglesa</option>
+                                <option value="us">Americana</option>
+                                <option value="outra">Outra</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Informações de Contacto -->
+                <div class="form-section">
+                    <h2 class="section-title">Informações de Contacto</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email" class="required">E-mail</label>
+                            <input type="email" id="email" name="email" required placeholder="exemplo@email.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telemovel" class="required">Telemóvel</label>
+                            <input type="tel" id="telemovel" name="telemovel" required placeholder="Ex: 912345678">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botão de Registo -->
+                <div class="button-container">
+                    <button type="submit" class="confirm-button">Registar Hóspede</button>
+                </div>
+                
+                <!-- Detalhes da Reserva -->
+                <div class="form-section">
+                    <h2 class="section-title">Detalhes da Reserva</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="select_quartos" class="required">Quarto</label>
+                            <select id="select_quartos" name="select_quartos" required>
+                                <option value="">Selecione um tipo de quarto</option>
+                                <option value="single">Quarto Solteiro - €80/noite</option>
+                                <option value="double">Quarto Casal - €120/noite</option>
+                                <option value="suite">Suíte - €250/noite</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="select_servicos">Serviços Adicionais</label>
+                            <select id="select_servicos" name="select_servicos">
+                                <option value="">Selecione serviços adicionais</option>
+                                <option value="breakfast">Pequeno-almoço (€15/dia)</option>
+                                <option value="lavandaria">Lavandaria (€12/dia)</option>
+                                <option value="parking">Estacionamento (€10/dia)</option>
+                                <option value="massagem">Massagem (€50/dia)</option>
+                                <option value="spa">Acesso ao SPA (€35/dia)</option>
+                            </select>
+                            <p class="form-note">Pode deixar em branco se o cliente não desejar serviços adicionais</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <div class="dates-container">
+                                <div class="date-group">
+                                    <label for="data_entrada" class="required">Data de Entrada</label>
+                                    <input type="date" id="data_entrada" name="data_entrada" required>
+                                </div>
+                                
+                                <div class="date-group">
+                                    <label for="data_saida" class="required">Data de Saída</label>
+                                    <input type="date" id="data_saida" name="data_saida" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Observações -->
+                <div class="form-section">
+                    <h2 class="section-title">Observações</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="observacoes">Observações Adicionais</label>
+                            <textarea id="observacoes" name="observacoes" placeholder="Por favor, indique quaisquer necessidades especiais, pedidos ou informações adicionais para a estadia do cliente..."></textarea>
+                            <p class="form-note">Ex: Cuidado na alimentação, acesso para pessoas com mobilidade reduzida, etc.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Botão de Confirmação -->
+                <div class="button-container">
+                    <button type="submit" class="confirm-button">Confirmar Reserva</button>
+                    <p class="form-note" style="margin-top: 15px;">Campos marcados com * são obrigatórios</p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="api/adaptador_cliente.js"></script>
+</body>
+</html>

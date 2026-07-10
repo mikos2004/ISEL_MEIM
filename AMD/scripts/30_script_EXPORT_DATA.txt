@@ -1,0 +1,119 @@
+--#############
+--# Tiago Alcobia (50521)
+--# Miguel Alcobia (50746)
+--# Fábio Pestana (50756)
+--#############
+
+--==============
+-- DB connection
+--==============
+\set dataBase db_prj
+;
+\set userName postgres
+;
+\connect :dataBase :userName
+;
+--==========================
+--==========================
+
+-- additional information about "client_encoding" in:
+-- http://www.postgresql.org/docs/9.6/static/multibyte.html
+\encoding WIN1250
+;
+
+
+
+--==========================
+-- [PRS: ADAPT]
+-- the file path where to write the data
+-- UPDATE THIS PATH TO YOUR DESIRED LOCATION
+\set filePath 'D:/ISEL/MEIM/AMD/prj_a/scripts/'
+\set csvFile :filePath'lenses_export.csv'
+\set txtFile :filePath'lenses_export.txt'
+\set dataTxtFile :filePath'lenses_3RowHeader.txt'
+\set headerTypeDataTxtFile :filePath'lenses_HeaderWithType.txt'
+--==========================
+
+-- DELIMITER E'\t'
+
+--==============================
+-- export to text data file
+--==============================
+
+-- Verificar se as views existem e têm dados antes de exportar
+SELECT 'Verificando dados das views...' AS info;
+
+SELECT 'v1 count:' as view_name, COUNT(*) as record_count FROM v1
+UNION ALL
+SELECT 'v1_dataset count:' as view_name, COUNT(*) as record_count FROM v1_dataset
+UNION ALL
+SELECT 'v2_dataset count:' as view_name, COUNT(*) as record_count FROM v2_dataset;
+
+-- Mostrar amostra dos dados a serem exportados
+SELECT 'Amostra dos dados (v1):' AS info;
+SELECT * FROM v1 LIMIT 5;
+
+-- Export main view as CSV
+COPY (SELECT * FROM v1) TO :'csvFile' WITH (
+    FORMAT csv,
+    HEADER false,
+    DELIMITER ',',
+    ENCODING 'WIN1250'
+);
+
+
+-- Export main view as TXT
+COPY (SELECT * FROM v1) TO :'txtFile' WITH (
+    FORMAT csv,
+    HEADER false,
+    DELIMITER ',',
+    ENCODING 'WIN1250'
+);
+
+
+-- Export 3-Row-Header format for Orange
+COPY (SELECT * FROM v1_dataset) TO :'dataTxtFile' WITH (
+    FORMAT csv,
+    HEADER false,
+    DELIMITER E'\t',
+    ENCODING 'WIN1250'
+);
+
+
+-- Export Header-with-Attribute-Type format for Orange
+COPY (SELECT * FROM v2_dataset) TO :'headerTypeDataTxtFile' WITH (
+    FORMAT csv,
+    HEADER false,
+    DELIMITER ',',
+    ENCODING 'WIN1250'
+);
+
+
+-- Alternative method using \COPY (client-side) - mais robusto
+\COPY (SELECT * FROM v1) TO :'csvFile' WITH (
+    FORMAT csv,
+    HEADER false,
+    DELIMITER ',',
+    ENCODING 'WIN1250'
+);
+
+\COPY (SELECT * FROM v1) TO :'txtFile' WITH (
+    FORMAT csv,
+    HEADER false,
+    DELIMITER ',',
+    ENCODING 'WIN1250'
+);
+
+\COPY (SELECT * FROM v1_dataset) TO :'dataTxtFile' WITH (
+    FORMAT csv,
+    HEADER false,
+    DELIMITER E'\t',
+    ENCODING 'WIN1250'
+);
+
+\COPY (SELECT * FROM v2_dataset) TO :'headerTypeDataTxtFile' WITH (
+    FORMAT csv,
+    HEADER false,
+    DELIMITER ',',
+    ENCODING 'WIN1250'
+);

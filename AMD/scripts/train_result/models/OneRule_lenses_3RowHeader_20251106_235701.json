@@ -1,0 +1,10 @@
+{
+  "dataset": "lenses_3RowHeader",
+  "model_type": "OneRule",
+  "timestamp": "20251106_235701",
+  "class_values": [
+    "hard",
+    "none",
+    "soft"
+  ]
+}

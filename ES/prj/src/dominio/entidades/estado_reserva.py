@@ -1,0 +1,7 @@
+from enum import Enum
+
+class EstadoReserva(Enum):
+    CONFIRMADA = "CONFIRMADA"
+    CHECKIN_EFETUADO = "CHECKIN_EFETUADO"
+    CHECKOUT_EFETUADO = "CHECKOUT_EFETUADO"
+    CANCELADA = "CANCELADA"
